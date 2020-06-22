@@ -379,15 +379,15 @@ def set_warn_strength(bot: Bot, update: Update, args: List[str]):
     msg = update.effective_message  # type: Optional[Message]
 
     if args:
-        if args[0].lower() in ("on", "yes"):
-            sql.set_warn_strength(chat.id, False)
+        if args[0].lower() in ("kick"):
+            sql.set_warn_strength(chat.id, "kick")
             msg.reply_text("Too many warns will now result in a ban!")
             return "<b>{}:</b>\n" \
                    "<b>Admin:</b> {}\n" \
                    "Has enabled strong warns. Users will be banned.".format(html.escape(chat.title),
                                                                             mention_html(user.id, user.first_name))
 
-        elif args[0].lower() in ("off", "no"):
+        elif args[0].lower() in ("ban"):
             sql.set_warn_strength(chat.id, True)
             msg.reply_text("Too many warns will now result in a kick! Users will be able to join again after.")
             return "<b>{}:</b>\n" \
